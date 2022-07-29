@@ -1,0 +1,23 @@
+h1{
+    font-size: 45px;
+    text-align: center;
+}
+h2{
+    text-align: center;
+    border:5px solid skyblue;
+    padding:20px;
+    margin:20px;
+    display:block;
+    width:400px;
+}
+#grid-ol{
+    display:grid;
+    border:3px solid pink;
+    grid-template-columns: 150px 1fr;
+}
+@media(max-width:1000px){
+    #grid-ol{
+        display:block;
+        grid-template-rows: auto;
+    }
+}

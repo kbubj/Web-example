@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> test html page </title>
+        <meta charset="utf-8">  <!-- 한글깨짐 해결 -->
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .boxol{
+                border:3px solid gray;
+            }
+            .js{
+                font-weight: bold;
+                color:red;
+            }
+            #first{
+                color:green;
+            }
+            span{
+                color:blue;
+            }
+            .small-display{
+                border:3px solid green;
+                text-align: center;
+                font-size: 30px;
+            }
+            @media(min-width:1000px){
+                .small-display{
+                    border:3px solid red;
+                }
+            }
+        </style>
+       
+    </head>
+    <body style="background-color: black; color:white;">
+        <a href="jq_test.html"> jQuery </a>
+        <p class="small-display"> green in small window </p>
+        Hello web! <br><br>
+        <h1> head 1 </h1> <h2> head 2(box model) </h2>
+        <p><strong> Strong web! </strong></p>
+        <p style="margin-top: 45px;"><a href="https://www.naver.com" target="_blank" title="when mouse is on the link"> Naver </a> 
+           <br> <u> underlined </u> web! </p> <!-- using css -->
+        <p style="margin-top:45px;"> <strong><a href="link1.html"> my link </a> </strong> </p>
+
+        <p style="margin-top: 45px;">안녕!</p>
+
+        <p> 
+            aa<div> div do nothing (used for css)</div> wow!!
+            <span class="js"> class js(span is similar but doesnt contain newline) </span> wow!!
+            <span> span is blue </span><!-- tag > class > id -->
+            <div class="js"> class js() </div>
+            <div id="first" class="js"> id first, class js</div> <!-- id is more specific, same id is prohibited -->
+        </p>
+
+        <div style="border-bottom: 1px solid gray;
+                    padding:5px;
+                    "></div>
+
+        <ul style="border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+        width:50px;
+        padding:40px;
+        margin:0px;">
+            <script>
+                let i = 0
+                while(i<10){
+                    document.write("<li> list "+ i + "</li>");
+                    i++
+                }
+            </script>
+        </ul>
+        <div id ="grid-ol">
+            <ol class="boxol">
+                <li>가</li>
+                <li>나</li>
+                <li>다</li>
+            </ol>
+            <ol class="boxol">
+                <li>라</li>
+                <li>마</li>
+                <li>바</li>
+            </ol>
+        </div>
+        <script>
+            document.write(3+2);
+            var name = "bubbub";
+            document.write('hi ' + name + "\n");
+            document.write('bye ' + name);
+        </script>
+        <br>
+        <input type="button" id="night_day" value="night" onclick=
+            "
+            change_day_night(this)
+            "
+        >
+        <br>
+        <input type="button" id="night_day2" value="night" onclick=
+            "
+            object1.method1(this)
+            "
+        >
+        <br>
+        <input type="button" id="js_color" value="red" onclick=
+            "
+            const targets = document.querySelectorAll('.js');
+            i = 0
+            if(this.value === 'red'){
+                while(i<targets.length){
+                    targets[i].style.color = 'green'
+                    i++
+                }
+                this.value = 'green'
+            }else if(this.value === 'green'){
+                while(i<targets.length){
+                    targets[i].style.color = 'blue'
+                    i++
+                }
+                this.value = 'blue'
+            }else{
+                while(i<targets.length){
+                    targets[i].style.color = 'red'
+                    i++
+                }
+                this.value = 'red'
+            }
+            "
+        >
+        <br>
+        <input type="button" onclick="ask_confirm()" value="agree">
+        <input type="button" onclick="ask_id()" value="id">
+        <br>
+
+        <pre id="jq"> jQuery example </pre>
+        <input type="button" onclick="$('#jq').css('color','red')" value="execute">
+        
+        
+        <br>
+        <input type="text" onchange="alert('changed')">
+        <br>
+        <input type="text" onkeydown="alert('keydown')">
+        <br>
+        <img src="https://images6.alphacoders.com/337/337780.jpg" width="500px" height="300px"> <!-- from web -->
+        <br>
+        <img src="kitty-cat-kitten-pet-45201.jpeg" width="500px" height="500px">
+        
+    </body>
+</html>
+<script src = day_night.js></script>
+<script>
+    let list1 = ['a', 1, '<p>abc<\p>']
+    let object1 = {
+        "property1" : "aaa",
+        "property2" : 35,
+        "method1" : change_day_night
+    }
+</script>
+<script>
+    function ask_confirm(){
+        if(confirm('ok?')){
+            alert('ok')
+        }else{
+            alert('nope');
+        }
+    }
+    function ask_id(){
+        if(prompt('id?') == 'bub0707'){
+            alert('welcome')
+        }else{
+            alert('no such id')
+        }
+    }
+</script>
+<!--<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+<script src="./lib/jquery-1.11.0.min.js"></script>
+<script>
+jQuery( document ).ready(function( $ ) {
+    $('body').prepend('<h1>Hello jQuery</h1>');
+});
+</script>

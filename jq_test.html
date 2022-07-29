@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> test jQuery page </title>
+        <meta charset="utf-8">  <!-- 한글깨짐 해결 -->
+        <link rel="stylesheet" href="style.css">
+       
+    </head>
+    <body>
+       <a href="test.html"> Main page </a>
+       <ol>
+        <li id="one">one</li>
+        <li id="two">two</li>
+        <li id="three">three</li>
+       </ol>
+        
+        <br>
+        <input type="button" id="night_day" value="night" onclick=
+            "
+            change_day_night(this)
+            "
+        >
+        <br>
+
+        <pre id="jq-color"> jQuery example </pre>
+        <input type="button" onclick="$('#jq-color').css('color','red')" value="execute">
+        <br>
+        <input type="button" onclick="$('li').css('color','red')" value="li">
+        <input type="button" onclick="$($('li')[1]).css('color','red')" value="jq_li[1]"> <!-- jq object -->
+        <input type="button" onclick="$('li')[0].style.color = 'red' " value="li[0]">  <!-- jq_obj[i] is DOM object-->
+        <input type="button" onclick="$('li').map(function(index,domelem){
+            $('body').append(index, domelem);
+            $(domelem).css('color', 'red');
+        }) " value="li.map">  
+        <br>
+
+        <img id="cat_img" src="kitty-cat-kitten-pet-45201.jpeg" width="500px" height="500px">
+        <br>
+        <input type="button" id="cat1" value="cat1">
+        <input type="button" id="cat2" value="cat2">
+
+        <div class="target">
+            content1
+        </div>
+         
+        <div class="target">
+            content2
+        </div>
+        <ul id="target">
+            <li>HTML</li>
+            <li>CSS</li>
+        </ul>
+        <input type="button" onclick="get();" value="get" />
+        <input type="button" onclick="set();" value="set" />
+        <script>
+            function get(){
+                var target = document.getElementById('target');
+                alert(target.innerHTML);
+            }
+            function set(){
+                var target = document.getElementById('target');
+                target.innerHTML = "<li>JavaScript Core</li><li>BOM</li><li>DOM</li>";
+            }
+        </script>
+
+        <p>
+            <label>prevent event on</label><input id="prevent" type="checkbox" name="eventprevent" value="on" >
+        </p>
+        <p>
+            <a href="http://opentutorials.org" onclick="if(document.getElementById('prevent').checked) return false;">opentutorials</a>
+        </p>
+        <p>
+            <form action="result.html" id="ff">
+                    <label for="name"> insert name </label><br>
+                    <input id="name" type="name"/><br>
+                    <input type="submit" >
+            </form>
+        </p>
+        <p><span>result: </span><span id = "result"></span></p>
+        <input id="change_res" type="name"/>
+
+    </body>
+</html>
+<script src = day_night.js></script>
+<script src="./lib/jquery-1.11.0.min.js"></script>
+<script>
+jQuery( document ).ready(function( $ ) {
+    $('body').prepend('<h1>Hello jQuery</h1>');
+});
+</script>
+<script>
+    $('.target').prepend('<div>prepend</div>');
+    $('.target').append('<div>append</div>');
+    $('.target').before('<div>before</div>');
+    $('.target').after('<div>after</div>');
+    $('.target').css('color','red');
+</script>
+<script>
+    let cat1 = document.getElementById("cat1");
+    let cat2 = document.getElementById("cat2");
+    cat1.addEventListener('click', function(event){
+        let img = $('#cat_img');
+        img.attr('src', 'https://images6.alphacoders.com/337/337780.jpg');
+    });
+    cat2.addEventListener('click', function(event){
+        img = $('#cat_img');
+        img.prop('src', 'kitty-cat-kitten-pet-45201.jpeg'); 
+    });
+    function cat_button(event){
+        img = $('#cat_img');
+        img.after('<div> change cat </div>');
+    }
+    cat1.addEventListener('click', cat_button);
+    cat2.addEventListener('click', cat_button);
+</script>
+
+<script>
+    document.getElementById('ff').addEventListener('submit', function(event){
+        if(document.getElementById('prevent').checked){
+            event.preventDefault();
+        } 
+        else if(document.getElementById('name').value.length == 0){
+            alert('name is empty');
+            event.preventDefault();
+        }
+    });
+    let t = $('#change_res');
+    t.on('change', function(event){
+        document.getElementById('result').innerHTML = event.target.value;
+    });
+    t.on('blur', function(event){
+        t.after('<br>blur');
+    });
+    t.on('focus', function(event){
+        t.after('<br>focus');
+    });
+</script>
